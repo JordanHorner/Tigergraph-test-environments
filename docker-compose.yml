@@ -40,7 +40,7 @@ services:
   tigergraph:
     image: tigergraph/tigergraph:latest
     container_name: tigergraph
-    command: su - tigergraph bash -c "export PATH=/home/tigergraph/tigergraph/app/cmd:\$PATH; bash /home/tigergraph/config.sh"
+    command: su - tigergraph bash -c "export PATH=/home/tigergraph/tigergraph/app/cmd:\$PATH; bash /home/tigergraph/config.sh tail -f /dev/null"
     ulimits:
       nofile:
         soft: 1000000

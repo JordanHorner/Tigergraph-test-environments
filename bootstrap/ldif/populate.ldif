@@ -1,0 +1,77 @@
+# create root dc
+#dn: dc=tigergraph,dc=com
+#objectClass: dcObject
+#objectClass: organization
+#o: eng
+#dc: tigergraph
+
+# create finance dept
+dn: ou=finance,dc=tigergraph,dc=com
+changetype: add
+ou: finance
+objectclass: organizationalUnit
+
+# create engineering dept
+dn: ou=eng,dc=tigergraph,dc=com
+changetype: add
+ou: eng
+objectclass: organizationalUnit
+
+# create sub-engineering dept: qa
+dn: ou=qa,ou=eng,dc=tigergraph,dc=com
+changetype: add
+ou: qa
+objectclass: organizationalUnit
+
+# create engineering users
+dn: cn=Xiao Ming,ou=eng,dc=tigergraph,dc=com
+changetype: add
+objectClass: person
+objectClass: uidObject
+objectClass: organizationalPerson
+sn: Ming
+uid: xiaoming
+userPassword: xiaoming
+title: SE
+
+dn: cn=Donald Trump,ou=eng,dc=tigergraph,dc=com
+changetype: add
+objectClass: person
+objectClass: uidObject
+objectClass: organizationalPerson
+sn: Trump
+uid: trump
+userPassword: trump
+title: SE
+
+# create qa users
+dn: cn=Xiao Wang,ou=qa,ou=eng,dc=tigergraph,dc=com
+changetype: add
+objectClass: person
+objectClass: uidObject
+objectClass: organizationalPerson
+sn: Wang
+uid: xiaowang
+userPassword: xiaowang
+title: QA
+
+#create finance users
+dn: cn=Dan Hu,ou=finance,dc=tigergraph,dc=com
+changetype: add
+objectClass: person
+objectClass: uidObject
+objectClass: organizationalPerson
+sn: Hu
+uid: dan
+userPassword: dan
+title: ACCOUNTANT
+
+dn: cn=Bob Marley,ou=finance,dc=tigergraph,dc=com
+changetype: add
+objectClass: person
+objectClass: uidObject
+objectClass: organizationalPerson
+sn: Marley
+uid: Bob.Marley@tigergraph.com
+userPassword: bob
+title: ACCOUNTANT

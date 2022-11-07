@@ -38,8 +38,8 @@ RUN curl -s -k -L PKG_NAME \\
   su - tigergraph /bin/bash -c """/home/tigergraph/tigergraph/app/cmd/gadmin license status && /home/tigergraph/tigergraph/app/cmd/gadmin version""" && \\
   # Stop TigerGraph
   su - tigergraph -c "/home/tigergraph/tigergraph/app/cmd/gadmin stop all -y"
-COPY run_demo101.sh /home/tigergraph/tutorial/3.x/gsql101/
-COPY run_demo102.sh /home/tigergraph/tutorial/3.x/gsql102/
+#COPY run_demo101.sh /home/tigergraph/tutorial/3.x/gsql101/
+#COPY run_demo102.sh /home/tigergraph/tutorial/3.x/gsql102/
 COPY entrypoint.sh /home/tigergraph/entrypoint.sh
 EXPOSE 22
 USER tigergraph

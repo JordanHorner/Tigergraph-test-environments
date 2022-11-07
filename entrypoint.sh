@@ -1,0 +1,1 @@
+sudo su - tigergraph bash -c "export PATH=/home/tigergraph/tigergraph/app/cmd:\$PATH; bash /home/tigergraph/config.sh tail -f /dev/null"

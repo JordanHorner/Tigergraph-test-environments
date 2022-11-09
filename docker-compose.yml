@@ -40,6 +40,9 @@ services:
   tigergraph:
     image: tigergraph/tigergraph:latest
     container_name: tigergraph
+    build:
+      context: tigergraph
+      dockerfile: Dockerfile
     ulimits:
       nofile:
         soft: 1000000

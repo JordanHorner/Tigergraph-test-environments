@@ -27,21 +27,11 @@ services:
     # fully-qualified domain name for the host.
     domainname: "tigergraph.com"
     hostname: "ldap-server"
-  phpldapadmin:
-    image: osixia/phpldapadmin:latest
-    container_name: phpldapadmin
-    environment:
-      PHPLDAPADMIN_LDAP_HOSTS: "openldap"
-      PHPLDAPADMIN_HTTPS: "false"
-    ports:
-      - "8080:80"
-    depends_on:
-      - openldap
   tigergraph:
-    image: tigergraph/tigergraph:latest
     container_name: tigergraph
+    image: tigergraph
     build:
-      context: tigergraph
+      context: .
       dockerfile: Dockerfile
     ulimits:
       nofile:
@@ -52,6 +42,6 @@ services:
       - "9000:9000"
       - "14240:14240"
     volumes:
-      - ./tigergraph/config/config.sh:/home/tigergraph/config.sh
+      - ./tigergraph/utils:/tmp/utils
     depends_on:
       - openldap

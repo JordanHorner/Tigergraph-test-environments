@@ -1,4 +1,4 @@
-FROM UBUNTU_VERSION AS TigerGraph_Base
+FROM ubuntu:18:04 AS tigergraph_base
 ENV DEBIAN_FRONTEND=noninteractive
 RUN useradd -ms /bin/bash tigergraph
 RUN apt-get -qq update && apt-get -qq upgrade && apt-get install -y --no-install-recommends sudo curl iproute2 net-tools cron ntp locales vim emacs wget git tar unzip jq uuid-runtime openssh-client openssh-server > /dev/null && \\
@@ -7,8 +7,8 @@ RUN apt-get -qq update && apt-get -qq upgrade && apt-get install -y --no-install
   echo "tigergraph ALL = NOPASSWD: /usr/sbin/sshd " >> /etc/sudoers && \\
   sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd && \\
   apt-get clean -y
-FROM TigerGraph_Base
-RUN curl -s -k -L PKG_NAME \\
+FROM tigergraph_base
+RUN curl -s -k -L https://dl.tigergraph.com/enterprise-edition/tigergraph-3.5.3-version-offline.tar.gz \\
     -o /home/tigergraph/tigergraph-dev.tar.gz && \\
   /usr/sbin/sshd && cd /home/tigergraph/ && \\
   tar xfz tigergraph-dev.tar.gz && \\

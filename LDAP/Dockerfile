@@ -37,7 +37,7 @@ ADD ./utils /tmp/utils
 RUN sudo -iHu tigergraph bash -c "export PATH=/home/tigergraph/tigergraph/app/cmd:\$PATH; bash /tmp/utils/config.sh"
 
 
-COPY entrypoint.sh /home/tigergraph/entrypoint.sh
+COPY ../entrypoint.sh /home/tigergraph/entrypoint.sh
 RUN chmod +x /home/tigergraph/entrypoint.sh
 WORKDIR /home/tigergraph
 USER tigergraph

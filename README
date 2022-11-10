@@ -1,0 +1,15 @@
+## To Run 
+
+Base image
+```bash
+  docker-compose up
+```
+
+Ldap or other branch container
+```bash
+  docker-compose  -f docker-compose.ldap.yml up
+```
+
+## Configuration
+
+/utils/config.sh may be configured for additonal tigergraph settings

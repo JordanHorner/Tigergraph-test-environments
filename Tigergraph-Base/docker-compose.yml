@@ -1,0 +1,8 @@
+version: '2'
+services:
+  tigergraph:
+    container_name: tigergraph
+    image: tigergraph
+    build:
+      context: .
+      dockerfile: Dockerfile

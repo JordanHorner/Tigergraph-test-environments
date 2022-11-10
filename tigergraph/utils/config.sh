@@ -1,3 +1,4 @@
+#! /bin/bash
 gadmin start infra
 gadmin start all
 gadmin config set Security.LDAP.Enable true

@@ -33,8 +33,10 @@ RUN apt-get -qq update && apt-get install -y --no-install-recommends \
     echo "export USER=tigergraph" >> /home/tigergraph/.bash_tigergraph && \
     chown -R tigergraph:tigergraph /home/tigergraph
 
-#FROM tigergraph_base AS tigergraph_configure
-#RUN bash /tmp/utils/config.sh
+FROM tigergraph_base AS tigergraph_configure
+VOLUME ./tigergraph/utils:/tmp/utils
+WORKDIR /tmp/utils
+RUN su - tigergraph -c "bash config.sh"
 
 
 COPY entrypoint.sh /home/tigergraph/entrypoint.sh

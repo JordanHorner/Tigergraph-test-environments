@@ -1,5 +1,5 @@
 FROM ubuntu:18.04 AS tigergraph_base
-VOLUME ./tigergraph/utils:/tmp/utils
+ADD ./tigergraph/utils /tmp/utils
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG APP_VERSION=3.5.3
@@ -34,9 +34,7 @@ RUN apt-get -qq update && apt-get install -y --no-install-recommends \
     chown -R tigergraph:tigergraph /home/tigergraph
 
 FROM tigergraph_base AS tigergraph_configure
-VOLUME ./tigergraph/utils:/tmp/utils
-WORKDIR /tmp/utils
-RUN su - tigergraph -c "bash config.sh"
+RUN sudo -iHu tigergraph bash -c "export PATH=/home/tigergraph/tigergraph/app/cmd:\$PATH; bash /tmp/utils/config.sh"
 
 
 COPY entrypoint.sh /home/tigergraph/entrypoint.sh

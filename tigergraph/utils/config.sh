@@ -10,3 +10,7 @@ gadmin config set Security.LDAP.AdminPassword "admin"
 gadmin config set RESTPP.Factory.EnableAuth true
 gadmin config apply -y
 gadmin restart gsql gui nginx restpp -y
+
+#Create Proxy Group
+gsql "create group repro proxy \"title=SE\""
+gsql "grant role superuser to repro"

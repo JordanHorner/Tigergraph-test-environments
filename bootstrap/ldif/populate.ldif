@@ -24,6 +24,16 @@ ou: qa
 objectclass: organizationalUnit
 
 # create engineering users
+dn: cn=John Smith,ou=eng,dc=tigergraph,dc=com
+changetype: add
+objectClass: person
+objectClass: uidObject
+objectClass: organizationalPerson
+sn: Smith
+uid: smith
+userPassword: smith
+title: SE
+
 dn: cn=Xiao Ming,ou=eng,dc=tigergraph,dc=com
 changetype: add
 objectClass: person

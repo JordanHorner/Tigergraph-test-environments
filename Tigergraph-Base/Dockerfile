@@ -1,7 +1,7 @@
 FROM ubuntu:18.04 AS tigergraph_base
 
 ENV DEBIAN_FRONTEND=noninteractive
-ARG APP_VERSION=3.5.3
+ARG APP_VERSION
 ARG APP_URL=https://dl.tigergraph.com/enterprise-edition/tigergraph-${APP_VERSION}-offline.tar.gz
 
 RUN apt-get -qq update && apt-get install -y --no-install-recommends \
@@ -37,7 +37,7 @@ ADD ./utils /tmp/utils
 RUN sudo -iHu tigergraph bash -c "export PATH=/home/tigergraph/tigergraph/app/cmd:\$PATH; bash /tmp/utils/config.sh"
 
 
-COPY ../entrypoint.sh /home/tigergraph/entrypoint.sh
+COPY entrypoint.sh /home/tigergraph/entrypoint.sh
 RUN chmod +x /home/tigergraph/entrypoint.sh
 WORKDIR /home/tigergraph
 USER tigergraph

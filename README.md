@@ -5,11 +5,11 @@
  ## To run images :
 Base image
 ```
-  docker-compose up
+   docker-compose build --build-arg APP_VERSION="3.5.3"
 ```
 Ldap or other branch container
 ```
-  docker-compose  -f docker-compose.ldap.yml up
+  docker-compose -f docker-compose.ldap.yml build --build-arg APP_VERSION="3.5.3"
 ```
 
 ## Configuration:

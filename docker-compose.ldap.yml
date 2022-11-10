@@ -3,8 +3,8 @@ services:
   tigergraph:
     container_name: tigergraph
     image: tigergraph
-    build:
-      context: .
+    build: 
+      context: ./LDAP/
       dockerfile: Dockerfile
   openldap:
     image: osixia/openldap:1.5.0

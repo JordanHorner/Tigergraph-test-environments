@@ -34,10 +34,11 @@ RUN apt-get -qq update && apt-get install -y --no-install-recommends \
     chown -R tigergraph:tigergraph /home/tigergraph
 
 #FROM tigergraph_base AS tigergraph_configure
-#RUN
+#RUN bash /tmp/utils/config.sh
 
 
 COPY entrypoint.sh /home/tigergraph/entrypoint.sh
+RUN chmod +x /home/tigergraph/entrypoint.sh
 WORKDIR /home/tigergraph
 USER tigergraph
 EXPOSE 22 9000 14240

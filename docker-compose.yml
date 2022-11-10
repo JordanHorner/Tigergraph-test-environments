@@ -4,5 +4,5 @@ services:
     container_name: tigergraph
     image: tigergraph
     build:
-      context: .
+      context: ./Tigergraph-Base/
       dockerfile: Dockerfile

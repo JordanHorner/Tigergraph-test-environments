@@ -6,3 +6,5 @@ services:
     build:
       context: ./Tigergraph-Base/
       dockerfile: Dockerfile
+    ports:
+      - 14240:14240

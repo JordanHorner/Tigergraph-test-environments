@@ -1,14 +1,15 @@
-version: '2'
+version: '3'
+
+networks:
+  my-network:
+    driver: bridge
+
 services:
-  tigergraph:
-    container_name: tigergraph
-    image: tigergraph
-    build: 
-      context: ./LDAP/
-      dockerfile: Dockerfile
   openldap:
     image: osixia/openldap:1.5.0
     container_name: openldap
+    networks:
+      - my-network
     environment:
       LDAP_LOG_LEVEL: "256"
       LDAP_ORGANISATION: "Tigergraph"
@@ -20,18 +21,26 @@ services:
     tty: true
     stdin_open: true
     volumes:
-      - /var/lib/ldap
-      - /etc/ldap/slapd.d
-      - /container/service/slapd/assets/certs/
-      - ./ldif/populate.ldif:/container/service/slapd/assets/config/bootstrap/ldif/50-bootstrap.ldif
+      - ./LDAP/ldif/populate.ldif:/container/service/slapd/assets/config/bootstrap/ldif/50-bootstrap.ldif
     command: --copy-service
     ports:
       - "389:389"
       - "636:636"
+    links:
+      - tigergraph:tigergraph
     # For replication to work correctly, domainname and hostname must be
     # set correctly so that "hostname"."domainname" equates to the
     # fully-qualified domain name for the host.
     domainname: "tigergraph.com"
     hostname: "ldap-server"
-    depends_on:
-      - tigergraph
+
+  tigergraph:
+    container_name: tigergraph
+    networks:
+      - my-network
+    image: tigergraph
+    build: 
+      context: ./LDAP/
+      dockerfile: Dockerfile
+    ports:
+      - 14240:14240
